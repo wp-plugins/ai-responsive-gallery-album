@@ -1,4 +1,4 @@
-=== AI Responsive Gallery Album (Gallery shortcode) ===
+=== AI Responsive Gallery Album ===
 Contributors: augustinfotech
 Tags: gallery,image,images,photo,photos,picture,pictures,thumbnails,photo-albums,responsive gallery,album,gallery shortcode,responsive album,responsive photos,responsive gallery,lightbox,fancybox
 Requires at least: 3.2
@@ -7,11 +7,11 @@ Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-AI Responsive Gallery Album allows you to implement a responsive effective gallery page into your website.This Plugin associates linked images and galleries with the jQuery Fancybox. 
+It allows you to implement a responsive gallery page into your website.This Plugin associates linked image galleries with the jQuery Fancybox. 
 
 == Description ==
 
-AI Responsive Gallery Album is a state of the art WordPress Gallery Plugin you can use to create, manage and handle image galleries easily in your WordPress backend and present images to your website visitors.
+AI Responsive Gallery Album is a state of the art WordPress Gallery Plugin , you can use it to create, manage and handle image galleries easily in your WordPress backend and present images to your website visitors. 
 It migrates the Fancy Image Box to your WordPress. All links pointing to an image will automatically open in the FancyBox.
 
 Features:
@@ -22,8 +22,8 @@ Features:
 * Add Multiple Gallery to your page or post using a shortcode. Ex.[Album ID=1,2]
 * Add Gallery to your page or post using a shortcode. Ex. [Album]
 * Add shortcode in any template file. Ex. < ? php echo do_shortcode("[Album ID=1]"); ? >
-* It provides a powerful engine for uploading and managing galleries of images, with the ability to               add/delete/disable/enable, and more.
-* You can specify the way the albums and photos order using functionality of drag and drop cell in the admin      panel.
+* It provides a powerful engine for uploading and managing image galleries, with the ability to add/delete/disable/enable, and much more.
+* You can specify the order of photos and albums  using functionality of drag and drop cell in the admin panel.
 * Add a caption to each photo in the album.
 * Fancy LightBox support for all linked images on your website.
 * Clean and easy-to-use user interfaces.

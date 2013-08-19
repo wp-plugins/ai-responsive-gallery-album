@@ -7,7 +7,7 @@ Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-It allows you to implement a responsive gallery page into your website.This Plugin associates linked image galleries with the jQuery Fancybox. 
+It allows you to implement a responsive gallery page into your website. This Plugin associates linked image galleries with the jQuery Fancybox. 
 
 == Description ==
 

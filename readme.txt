@@ -1,7 +1,7 @@
 === AI Responsive Gallery Album ===
 Contributors: augustinfotech
 Tags: gallery,image,images,photo,photos,picture,pictures,thumbnails,photo-albums,responsive gallery,album,gallery shortcode,responsive album,responsive photos,responsive gallery,lightbox,fancybox
-Requires at least: 3.2
+Requires at least: 3.5
 Tested up to: 3.5.2
 Stable tag: 1.0
 License: GPLv2 or later

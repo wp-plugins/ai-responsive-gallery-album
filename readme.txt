@@ -64,4 +64,4 @@ No Questions
 * First version.
 
 == Upgrade Notice ==
-No Upgrade
+* Upgrade Notice Notification

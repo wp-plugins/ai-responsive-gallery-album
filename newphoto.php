@@ -496,9 +496,11 @@ jQuery(document).ready(function() {
       <td>
 
        <input type="file" size="30" value="" name="photo_image" id="photo_image"/>
-
-        <div><img border="0" id="pic" src="<?php echo esc_url($photo_file_thumb.$thub_photo_name) ;?>"></div>
-
+	   
+	   <?php $ai_photo_url = esc_url($photo_file_thumb.$thub_photo_name) ; ?>
+	   <?php if(isset($ai_photo_url) && !empty($ai_photo_url)){?>
+         <div><img border="0" id="pic" src="<?php echo $ai_photo_url ;?>"></div>
+	    <?php }?>	 
         <?php _e('Valid file format : .jpg|.jpeg|.png|.gif ','aigallery'); ?>
 
        </td>

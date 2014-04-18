@@ -505,8 +505,10 @@ jQuery(document).ready(function() {
 
        <input type="file" size="30" value="" name="album_image" id="album_image">
 
-        <div><img border="0" id="pic" src="<?php echo esc_url($ai_file_thumb.$thub_album_name) ;?>"></div>
-
+        <?php $ai_cover_url = esc_url($ai_file_thumb.$thub_album_name) ; ?>
+		<?php if(isset($ai_cover_url) && !empty($ai_cover_url)){?>
+          <div><img border="0" id="pic" src="<?php echo $ai_cover_url;?>"></div>
+        <?php }?>
         <?php _e('Valid file format : .jpg|.jpeg|.png|.gif ','aigallery'); ?>
 
        </td>

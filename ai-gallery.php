@@ -8,7 +8,7 @@ Plugin URI: http://www.augustinfotech.com
 
 Description: AI Responsive Gallery Album for WordPress
 
-Version: 1.0
+Version: 1.1
 
 Text Domain: aigallery
 
@@ -62,9 +62,9 @@ if ( 'plugins.php' === $pagenow )
     $file   = basename( __FILE__ );
     $folder = basename( dirname( __FILE__ ) );
     $hook = "in_plugin_update_message-{$folder}/{$file}";
-    add_action( $hook, 'update_notification_message', 20, 2 );
+    add_action( $hook, 'update_gallery_notification_message', 20, 2 );
 }
-function update_notification_message( $plugin_data, $r )
+function update_gallery_notification_message( $plugin_data, $r )
 {
     $data = file_get_contents( 'http://plugins.trac.wordpress.org/browser/ai-responsive-gallery-album/trunk/readme.txt?format=txt' );
 	$upgradetext = stristr( $data, '== Upgrade Notice ==' );	
@@ -399,6 +399,10 @@ function ai_admin_enqueue_scripts()
 	wp_register_script( 'jquery.validate', AI_URL_PATH.'js/jquery.validate.js');
 
     wp_enqueue_script( 'jquery.validate' ); 
+	
+	wp_register_script( 'jquery.microgallery', AI_URL_PATH.'js/jquery.microgallery.js');
+
+   wp_enqueue_script( 'jquery.microgallery' ); 
 
 }
 

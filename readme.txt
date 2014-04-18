@@ -1,9 +1,9 @@
 === AI Responsive Gallery Album ===
 Contributors: augustinfotech
-Tags: gallery,image,images,photo,photos,picture,pictures,thumbnails,photo-albums,responsive gallery,album,gallery shortcode,responsive album,responsive photos,responsive gallery,lightbox,fancybox
+Tags: gallery,image,images,photo,photos,picture,pictures,thumbnails,photo-albums,responsive gallery,album,gallery shortcode,responsive album,responsive photos,responsive gallery,lightbox,fancybox,micro,micro gallery,micro image gallery
 Requires at least: 3.5
-Tested up to: 3.5.2
-Stable tag: 1.0
+Tested up to: 3.9
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,7 +17,9 @@ It migrates the Fancy Image Box to your WordPress. All links pointing to an imag
 Features:
 
 * There is no limitation to the number of albums and photos.
+* There is no limitation to the number of albums and photos.
 * Upload any number of photos to each album in the gallery.
+* Micro Image gallery Features so user can easily view all the thumb photos of albums.
 * Add Single Gallery to your page or post using a shortcode. Ex. [Album ID=1]
 * Add Multiple Gallery to your page or post using a shortcode. Ex.[Album ID=1,2]
 * Add Gallery to your page or post using a shortcode. Ex. [Album]
@@ -52,16 +54,20 @@ No Questions
 5. Dragand Drop Album.
 6. Dragand Drop Gallery.
 7. Edit Album.
-8. Edit Gallery.
-9. Shortcode Put In Page Or Post Or Template File.
-10. Front End : Album Display.
-11. Front End : Selected Album Open.
-12. Front End : Selected Image Open In Fancybox.
+8. Edit Gallery. 
+9.Shortcode Put In Page Or Post Or Template File.
+10.Front End : Album Display.
+11.Front End : Selected Album Open.
+12.Front End : Selected Image Open In Fancybox.
+13.Micro Image Gallery
 
 
 == Changelog ==
 = 1.0 =
 * First version.
+
+= 1.1 =
+* Added Micro Image gallery Features so user can easily view all the thumb photos of albums and navigate easily between them.
 
 == Upgrade Notice ==
 * Upgrade Notice Notification

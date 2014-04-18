@@ -48,7 +48,7 @@ if($_REQUEST['action'] == 'Delete')
 
 	
 
-	$wpdb->query($wpdb->prepare("DELETE FROM $ai_show_table_photos WHERE photo_id = '".$_REQUEST['photoid']."'"));
+	$wpdb->query($wpdb->prepare("DELETE FROM $ai_show_table_photos WHERE photo_id = %d",$_REQUEST['photoid']));
 
 	$location=admin_url().'admin.php?page=ai_listing_photos&photo_delete_success=1&album_id='.$_REQUEST['albumid'];	
 
@@ -60,7 +60,7 @@ if($_REQUEST['action'] == 'Disable')
 
 {  
 
-	$wpdb->query($wpdb->prepare("UPDATE $ai_show_table_photos SET photo_visible=0 WHERE photo_id = '".$_REQUEST['photoid']."'"));
+	$wpdb->query($wpdb->prepare("UPDATE $ai_show_table_photos SET photo_visible=0 WHERE photo_id = %d",$_REQUEST['photoid']));
 
 	$location=admin_url().'admin.php?page=ai_listing_photos&photo_disable_success=1&album_id='.$_REQUEST['albumid'];
 
@@ -72,7 +72,7 @@ if($_REQUEST['action'] == 'Enable')
 
 {  
 
-	$wpdb->query($wpdb->prepare("UPDATE $ai_show_table_photos SET photo_visible=1 WHERE photo_id = '".$_REQUEST['photoid']."'"));
+	$wpdb->query($wpdb->prepare("UPDATE $ai_show_table_photos SET photo_visible=1 WHERE photo_id =%d",$_REQUEST['photoid']));
 
 	$location= admin_url().'admin.php?page=ai_listing_photos&photo_enable_success=1&album_id='.$_REQUEST['albumid'];
 
@@ -88,7 +88,7 @@ if($_REQUEST['Action'] == 'EnableDisableSelected')
 
 	$params = join(',', $edittable);
 
-	$wpdb->query($wpdb->prepare("UPDATE $ai_show_table_photos SET photo_visible='".$_POST['visible']."' WHERE photo_id IN ($params)"));
+	$wpdb->query($wpdb->prepare("UPDATE $ai_show_table_photos SET photo_visible='".$_POST['visible']."' WHERE photo_id IN ($params)",ARRAY_N));
 
 	if($_POST['visible'] == '1')
 
@@ -156,11 +156,7 @@ if ($_REQUEST['Action'] == 'DeleteSelected')
 
 	
 
-	$wpdb->query(
-
-	$wpdb->prepare("DELETE FROM $ai_show_table_photos
-
-				  WHERE photo_id IN ($params)"));
+	$wpdb->query($wpdb->prepare("DELETE FROM $ai_show_table_photos WHERE photo_id IN ($params)",ARRAY_N));
 
 				  
 
@@ -264,57 +260,25 @@ $ai_album_name=$wpdb->get_results("select album_title from $ai_show_table_album 
 
     </tr>  
 
-    <tr>
+    <tr style="border-bottom:1px solid #e1e1e1;">
 
       <th>&nbsp;&nbsp;</th>
 
-      <th>Photo Title</th>
+      <th style="width:133px;">Photo Title</th>
 
-      <th>Photo</th>
+      <th style="width:220px;">Photo</th>
 
-      <th>Photo Date</th>
+      <th style="width:133px;">Photo Date</th>
 
-      <th>Photo Slug</th>
+      <th style="width:122px;">Photo Slug</th>
 
-      <th>Action</th>
+      <th style="width:170px;">Action</th>
 
     </tr>
 
   </thead>
 
-  <tfoot>
-
-    <tr>
-
-      <th>&nbsp;&nbsp;</th>
-
-      <th>Photo Title</th>
-
-      <th>Photo</th>
-
-      <th>Photo Date</th>
-
-      <th>Photo Slug</th>
-
-      <th>Action</th>
-
-    </tr>
-
-    <tr>
-
-        <td colspan="6" bgcolor="#FFFFFF">
-
-            <img src="<?php echo AI_URL_PATH.'images/remove.png' ;?>"  title="MultipleDelete" onClick="JavaScript: CDeleteChecked_Click(document.photolist,document.getElementsByName('selector[]'),<?php echo $_REQUEST['album_id'] ; ?>);">
-
-           <img src="<?php echo AI_URL_PATH.'images/bullet-green.png' ;?>" class="" title="MultipleEnable" onClick="JavaScript: CVisibleHideChecked_Click(document.photolist, document.getElementsByName('selector[]'), '1',<?php echo $_REQUEST['album_id'] ; ?>);"><img src="<?php echo AI_URL_PATH.'images/bullet-red.png' ;?>" title="multipleDisable" onClick="JavaScript: CVisibleHideChecked_Click(document.photolist, document.getElementsByName('selector[]'), '0',<?php echo $_REQUEST['album_id'] ; ?>);">
-
-           <a href="JavaScript: CheckUncheck_Click(document.getElementsByName('selector[]'), true);" onMouseMove="window.status='Check All';" onMouseOut="window.status='';">Check All</a> / <a href="JavaScript: CheckUncheck_Click(document.getElementsByName('selector[]'), false);" onMouseMove="window.status='Uncheck All';" onMouseOut="window.status='';">Uncheck All</a>
-
-         </td>
-
-    </tr>
-
-  </tfoot>
+  
 
   <tbody id='ai_photo_sortable' class="sorted">
 
@@ -348,13 +312,13 @@ $ai_album_name=$wpdb->get_results("select album_title from $ai_show_table_album 
 
 			<td><input name="selector[]" type="checkbox" value=<?php echo $val->photo_id; ?>></td>
 
-			<td class='title column-title'><?php echo $val->photo_title; ?></td>  
+			<td class='title column-title' style="width:120px;"><?php echo $val->photo_title; ?></td>  
 
-			<td class='title column-title'><img src="<?php echo $ai_file_thumb.$ai_thumb_photo_name ;?>" alt='No Image'></td> 
+			<td class='title column-title' style="width:222px;"><img src="<?php echo $ai_file_thumb.$ai_thumb_photo_name ;?>" alt='No Image'></td> 
 
-			<td class='title column-title'><?php echo $val->photo_date; ?></td>  
+			<td class='title column-title' style="width:138px;"><?php echo $val->photo_date; ?></td>  
 
-			<td class='title column-title'><?php echo $val->photo_slug; ?></td>
+			<td class='title column-title' style="width:120px;"><?php echo $val->photo_slug; ?></td>
 
 			<td style='min-width:386px;'>
 
@@ -423,6 +387,40 @@ $ai_album_name=$wpdb->get_results("select album_title from $ai_show_table_album 
 	?>
 
   </tbody>
+  
+  <tfoot style="border-top:1px solid #e1e1e1; display:block;">
+
+    <tr>
+
+      <th style="border:none;">&nbsp;&nbsp;</th>
+
+      <th style="width:133px;">Photo Title</th>
+
+      <th style="width:220px;">Photo</th>
+
+      <th style="width:133px;">Photo Date</th>
+
+      <th style="width:122px;">Photo Slug</th>
+
+      <th style="width:170px;">Action</th>
+
+    </tr>
+
+    <tr>
+
+        <td colspan="6" bgcolor="#FFFFFF">
+
+            <img src="<?php echo AI_URL_PATH.'images/remove.png' ;?>"  title="MultipleDelete" onClick="JavaScript: CDeleteChecked_Click(document.photolist,document.getElementsByName('selector[]'),<?php echo $_REQUEST['album_id'] ; ?>);">
+
+           <img src="<?php echo AI_URL_PATH.'images/bullet-green.png' ;?>" class="" title="MultipleEnable" onClick="JavaScript: CVisibleHideChecked_Click(document.photolist, document.getElementsByName('selector[]'), '1',<?php echo $_REQUEST['album_id'] ; ?>);"><img src="<?php echo AI_URL_PATH.'images/bullet-red.png' ;?>" title="multipleDisable" onClick="JavaScript: CVisibleHideChecked_Click(document.photolist, document.getElementsByName('selector[]'), '0',<?php echo $_REQUEST['album_id'] ; ?>);">
+
+           <a href="JavaScript: CheckUncheck_Click(document.getElementsByName('selector[]'), true);" onMouseMove="window.status='Check All';" onMouseOut="window.status='';">Check All</a> / <a href="JavaScript: CheckUncheck_Click(document.getElementsByName('selector[]'), false);" onMouseMove="window.status='Uncheck All';" onMouseOut="window.status='';">Uncheck All</a>
+
+         </td>
+
+    </tr>
+
+  </tfoot>
 
      <input type="hidden" name="Action">
 

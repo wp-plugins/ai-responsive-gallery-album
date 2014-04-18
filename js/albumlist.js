@@ -109,4 +109,11 @@ jQuery(function() {
 	setTimeout(function() {
 		jQuery('.update-nag').fadeOut('fast');
 		}, 3000);
-});		
+});
+jQuery(function() {
+    jQuery(".microGallery").microgallery({
+	    menu:false,
+		size:'medium',
+        mode:'thumbs'
+    });
+});	

@@ -25,7 +25,6 @@ if($_REQUEST['action'] == 'Delete')
 	$ai_album_get_image=$wpdb->get_results("SELECT album_cover_image from $ai_show_table_album WHERE album_id = '".$_REQUEST['id']."'",ARRAY_A);
 
 
-
 	if(file_exists(AI_GALLERY_DIR_PATH.'/'.$ai_album_get_image[0]['album_cover_image'])){
 
 		@unlink(AI_GALLERY_DIR_PATH.'/'.$ai_album_get_image[0]['album_cover_image']);
@@ -80,9 +79,9 @@ if($_REQUEST['action'] == 'Delete')
 
 	
 
-	$wpdb->query($wpdb->prepare("DELETE FROM $ai_show_table_album WHERE album_id = '".$_REQUEST['id']."'"));
+	$wpdb->query($wpdb->prepare("DELETE FROM $ai_show_table_album WHERE album_id =%d",$_REQUEST['id']));
 
-	$wpdb->query($wpdb->prepare("DELETE FROM $ai_show_table_photos WHERE photo_album_id = '".$_REQUEST['id']."'"));
+	$wpdb->query($wpdb->prepare("DELETE FROM $ai_show_table_photos WHERE photo_album_id =%d",$_REQUEST['id']));
 
 	$location=admin_url().'admin.php?page=ai_gallery&album_delete_success=1';	
 
@@ -94,7 +93,7 @@ if($_REQUEST['action'] == 'Disable')
 
 {  
 
-	$wpdb->query($wpdb->prepare("UPDATE $ai_show_table_album SET album_visible=0 WHERE album_id = '".$_REQUEST['id']."'"));
+	$wpdb->query($wpdb->prepare("UPDATE $ai_show_table_album SET album_visible=0 WHERE album_id =%d",$_REQUEST['id']));
 
 	$location=admin_url().'admin.php?page=ai_gallery&album_disable_success=1';
 
@@ -106,7 +105,7 @@ if($_REQUEST['action'] == 'Enable')
 
 {  
 
-	$wpdb->query($wpdb->prepare("UPDATE $ai_show_table_album SET album_visible=1 WHERE album_id = '".$_REQUEST['id']."'"));
+	$wpdb->query($wpdb->prepare("UPDATE $ai_show_table_album SET album_visible=1 WHERE album_id =%d",$_REQUEST['id']));
 
 	$location= admin_url().'admin.php?page=ai_gallery&album_enable_success=1';
 
@@ -122,7 +121,7 @@ if($_REQUEST['Action'] == 'EnableDisableSelected')
 
 	$params = join(',', $edittable);
 
-	$wpdb->query($wpdb->prepare("UPDATE $ai_show_table_album SET album_visible='".$_POST['visible']."' WHERE album_id IN ($params)"));
+	$wpdb->query($wpdb->prepare("UPDATE $ai_show_table_album SET album_visible='".$_POST['visible']."' WHERE album_id IN ($params)",ARRAY_N));
 
 	
 
@@ -228,9 +227,9 @@ if ($_REQUEST['Action'] == 'DeleteSelected')
 
 	// use the IN operator in your WHERE-clause
 
-	$wpdb->query($wpdb->prepare("DELETE FROM $ai_show_table_album WHERE album_id IN ($params)"));
+	$wpdb->query($wpdb->prepare("DELETE FROM $ai_show_table_album WHERE album_id IN ($params)",ARRAY_N));
 
-	$wpdb->query($wpdb->prepare("DELETE FROM $ai_show_table_photos WHERE photo_album_id IN ($params)"));
+	$wpdb->query($wpdb->prepare("DELETE FROM $ai_show_table_photos WHERE photo_album_id IN ($params)",ARRAY_N));
 
 	$location=admin_url().'admin.php?page=ai_gallery&album_delete_success=1';
 
@@ -318,7 +317,7 @@ $ai_get_album_res=$wpdb->get_results("select * from $ai_show_table_album ORDER B
 
 <form  action="" method="post" name="albumlist">
 
- <table cellspacing="0" class="wp-list-table widefat fixed ui-sortable" width="100%">
+ <table cellspacing="0" class="wp-list-table widefat ui-sortable" width="100%">
 
   <thead>
 
@@ -328,21 +327,23 @@ $ai_get_album_res=$wpdb->get_results("select * from $ai_show_table_album ORDER B
 
     </tr>  
 
-    <tr>
+    <tr class="field_heading">
 
       <th>&nbsp;&nbsp;</th>
 
-      <th>Album Title</th>
+      <th style="width:170px;">Album Title</th>
 
-      <th>Album Cover Image</th>
+      <th style="width:170px;">Album Cover Image</th>
 
-      <th>ALbum Date</th>
+      <th style="width:170px;">Album Date</th>
+	  
+	  <th style="width:175px;">Album Micro Images</th>
+	  
+      <th style="width:170px;">Album ShortCode</th>
 
-      <th>Album ShortCode</th>
+      <th style="width:170px;">Total Images</th>
 
-      <th>Total Images</th>
-
-      <th>Action</th>
+      <th style="width:170px;">Action</th>
 
     </tr>
 
@@ -352,41 +353,7 @@ $ai_get_album_res=$wpdb->get_results("select * from $ai_show_table_album ORDER B
 
   </thead>
 
-  <tfoot>
-
-    <tr>
-
-      <th>&nbsp;&nbsp;</th>
-
-      <th>Album Title</th>
-
-      <th>Album Cover Image</th>
-
-      <th>ALbum Date</th>
-
-      <th>Album Slug</th>
-
-      <th>Total Images</th>
-
-      <th>Action</th>
-
-    </tr>
-
-     <tr>
-
-        <td colspan="7" bgcolor="#FFFFFF">
-
-            <img src="<?php echo AI_URL_PATH.'images/remove.png' ;?>"  title="MultipleDelete" onClick="JavaScript: CDeleteChecked_Click(document.albumlist,document.getElementsByName('selector[]'));">
-
-           <img src="<?php echo AI_URL_PATH.'images/bullet-green.png' ;?>" class="" title="MultipleEnable" onClick="JavaScript: CVisibleHideChecked_Click(document.albumlist, document.getElementsByName('selector[]'), '1');"><img src="<?php echo AI_URL_PATH.'images/bullet-red.png' ;?>" title="multipleDisable" onClick="JavaScript: CVisibleHideChecked_Click(document.albumlist, document.getElementsByName('selector[]'), '0');">
-
-           <a href="JavaScript: CheckUncheck_Click(document.getElementsByName('selector[]'), true);" onMouseMove="window.status='Check All';" onMouseOut="window.status='';">Check All</a> / <a href="JavaScript: CheckUncheck_Click(document.getElementsByName('selector[]'), false);" onMouseMove="window.status='Uncheck All';" onMouseOut="window.status='';">Uncheck All</a>
-
-         </td>
-
-    </tr>
-
-  </tfoot>
+  
 
   <tbody id='ai_album_sortable' class="sorted">
 
@@ -401,7 +368,8 @@ $ai_get_album_res=$wpdb->get_results("select * from $ai_show_table_album ORDER B
 		  foreach($ai_get_album_res as $key => $val)
 
 		  {
-
+              $ai_album_micro_images=$wpdb->get_results("select photo_filename from $ai_show_table_photo WHERE photo_album_id='".$val->album_id."'",ARRAY_A);
+			  
 			  if(!empty($val->album_cover_image))
 			  { 
 				  $file_thumb=AI_GALLERY_THUMB_URL_PATH.'/';
@@ -418,8 +386,8 @@ $ai_get_album_res=$wpdb->get_results("select * from $ai_show_table_album ORDER B
 			  $color='style="background-color:#CCCCCC;"';
 
 			  
-
-			  $ai_getcount_album_images=$wpdb->get_results("select count(*) as albumcount from $ai_show_table_photo WHERE photo_album_id='".$val->album_id."'",ARRAY_A);
+			  $ai_getcount_album_images=$wpdb->get_results("select count(*) as albumcount,photo_filename from $ai_show_table_photo WHERE photo_album_id='".$val->album_id."'",ARRAY_A);
+			  
 
 		  ?> 
 
@@ -427,17 +395,49 @@ $ai_get_album_res=$wpdb->get_results("select * from $ai_show_table_album ORDER B
 
 			<td><input name="selector[]" type="checkbox" value=<?php echo $val->album_id; ?>></td>
 
-			<td class='title column-title'><?php echo $val->album_title; ?></td>  
+			<td class='title column-title' style="width:120px;"><?php echo $val->album_title; ?></td>  
 
-			<td class='title column-title'><img src="<?php echo $file_thumb.$thumb_album_name ;?>" alt='No Image'></td> 
+			<td class='title column-title' style="width:120px;"><img class="cover_img" src="<?php echo $file_thumb.$thumb_album_name ;?>" alt='No Image'></td> 
 
-			<td class='title column-title'><?php echo $val->album_date; ?></td>  
+			<td class='title column-title' style="width:120px;"><?php echo $val->album_date; ?></td>  
 
-			<td class='title column-title'>[Album ID=<?php echo $val->album_id; ?>]</td>
+			<td class='title column-title' style="width:120px;">
+			 
+			 <div class="microGallery"> 
+			  
+			  <?php
+			  foreach($ai_album_micro_images as $mkey => $mval)
+			  {   
+			      foreach($mval as $mick => $micv)
+				  {
+				  	
+				  	  if(!empty($micv))
+					  { 
+					    
+					    $ai_file_thumb=AI_PHOTO_THUMB_URL_PATH.'/';
+						
+					    $ai_photo_name= explode('.',$micv);
+						
+						$ai_thumb_photo_name=$ai_photo_name[0].'-thumb'.'.'.$ai_photo_name[1];
+				   
+					  }
+					  ?>
+					 
+					 <img src="<?php echo $ai_file_thumb.$ai_thumb_photo_name ;?>" alt='No Image'>
+			  
+			  		<?php
+				  }	 
+				
+			  }
+			  ?>
+			   </div>
+			 	
+			</td>
+			<td class='title column-title album_id' style="width:120px;">[Album ID=<?php echo $val->album_id; ?>]</td>
 
-			<td class='title column-title'><?php echo $ai_getcount_album_images[0]['albumcount']; ?></td>
+			<td class='title column-title total_img' style="width:120px;"><?php echo $ai_getcount_album_images[0]['albumcount']; ?></td>
 
-			<td style='min-width:386px;'>
+			<td class='user_action' style="width:128px;">
 
                <a href='javascript:Photos_Click(<?php echo $val->album_id ; ?>)'><img src="<?php echo AI_URL_PATH.'images/gal.png' ; ?>" border='0' alt='Photos' title='Photos'></a>
 
@@ -506,6 +506,43 @@ $ai_get_album_res=$wpdb->get_results("select * from $ai_show_table_album ORDER B
 	?>
 
   </tbody>
+  <tfoot class="table_footer">
+
+    <tr class="footer_heading">
+
+      <th>&nbsp;&nbsp;</th>
+
+      <th style="width:170px;">Album Title</th>
+
+      <th style="width:170px;">Album Cover Image</th>
+
+      <th style="width:170px;" >Album Date</th>
+	  
+	  <th style="width:175px;">Album Micro Images</th>
+
+      <th style="width:170px;">Album ShortCode</th>
+
+      <th style="width:170px;">Total Images</th>
+
+      <th style="width:170px;">Action</th>
+
+    </tr>
+
+     <tr>
+
+        <td colspan="7" bgcolor="#FFFFFF">
+
+            <img src="<?php echo AI_URL_PATH.'images/remove.png' ;?>"  title="MultipleDelete" onClick="JavaScript: CDeleteChecked_Click(document.albumlist,document.getElementsByName('selector[]'));">
+
+           <img src="<?php echo AI_URL_PATH.'images/bullet-green.png' ;?>" class="" title="MultipleEnable" onClick="JavaScript: CVisibleHideChecked_Click(document.albumlist, document.getElementsByName('selector[]'), '1');"><img src="<?php echo AI_URL_PATH.'images/bullet-red.png' ;?>" title="multipleDisable" onClick="JavaScript: CVisibleHideChecked_Click(document.albumlist, document.getElementsByName('selector[]'), '0');">
+
+           <a href="JavaScript: CheckUncheck_Click(document.getElementsByName('selector[]'), true);" onMouseMove="window.status='Check All';" onMouseOut="window.status='';" style="margin-left:20px;">Check All</a> / <a href="JavaScript: CheckUncheck_Click(document.getElementsByName('selector[]'), false);" onMouseMove="window.status='Uncheck All';" onMouseOut="window.status='';" style="">Uncheck All</a>
+
+         </td>
+
+    </tr>
+
+  </tfoot>
 
      <input type="hidden" name="Action">
 

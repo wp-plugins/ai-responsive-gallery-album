@@ -55,11 +55,11 @@ No Questions
 6. Dragand Drop Gallery.
 7. Edit Album.
 8. Edit Gallery. 
-9.Shortcode Put In Page Or Post Or Template File.
-10.Front End : Album Display.
-11.Front End : Selected Album Open.
-12.Front End : Selected Image Open In Fancybox.
-13.Micro Image Gallery
+9. Shortcode Put In Page Or Post Or Template File.
+10. Front End : Album Display.
+11. Front End : Selected Album Open.
+12. Front End : Selected Image Open In Fancybox.
+13. Micro Image Gallery
 
 
 == Changelog ==

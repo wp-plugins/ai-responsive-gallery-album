@@ -21,6 +21,14 @@ function add_album_frontend($atts)
 	wp_enqueue_script('ai-responsive-gallery');
 
 	wp_enqueue_style('ai-responsive-gallery', AI_URL_PATH.'css/ai-responsive-gallery.css');
+	
+	
+	wp_register_script('colorbox-min', AI_URL_PATH.'js/jquery.colorbox-min.js');
+	
+	wp_enqueue_script('colorbox-min' );
+
+	wp_enqueue_style('colorbox', AI_URL_PATH.'css/colorbox.css');
+	
 
 	wp_head();
 
@@ -111,7 +119,7 @@ function add_album_frontend($atts)
 
 					$data .='<li data-pile="'.$ai_album_v['album_title'].'">
 
-							<a class="fancybox" rel="'.$ai_album_v['album_title'].'" href="'.$ai_fnt_photo_url_path.$ai_fnt_photo_name.'" title="'.$ai_photo_v['photo_title'].'">
+							<a class="gallery" rel="'.$ai_album_v['album_title'].'" href="'.$ai_fnt_photo_url_path.$ai_fnt_photo_name.'" title="'.$ai_photo_v['photo_title'].'">
 
 								<span class="tp-info"><span>'.$ai_photo_v['photo_title'].'</span></span>
 
@@ -171,34 +179,12 @@ function add_album_frontend($atts)
 				} );
 
 			} );
-			jQuery(document).ready(function() {
-
-				jQuery(".fancybox").fancybox({
-
-					
-
-					openEffect : 'elastic',
-
-				    openSpeed  : 150,
-
-
-
-				    closeEffect : 'elastic',
-
-				    closeSpeed  : 150,
-
-					
-
-					prevEffect	: 'none',
-
-					nextEffect	: 'none',
-
-					
-
-				});
-
-		  });
-
+			jQuery(document).ready(function(){
+				 jQuery('a.gallery').colorbox({transition:"fade"});
+	
+			});
+			
+			
 		</script>
 
     <?php

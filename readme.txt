@@ -7,12 +7,12 @@ Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-It allows you to implement a responsive gallery page into your website. This Plugin associates linked image galleries with the jQuery Fancybox. 
+It allows you to implement a responsive gallery page into your website. This Plugin associates linked image galleries with the jQuery Colorbox. 
 
 == Description ==
 
 AI Responsive Gallery Album is a state of the art WordPress Gallery Plugin , you can use it to create, manage and handle image galleries easily in your WordPress backend and present images to your website visitors. 
-It migrates the Fancy Image Box to your WordPress. All links pointing to an image will automatically open in the FancyBox.
+It migrates the Fancy Image Box to your WordPress. All links pointing to an image will automatically open in the Colorbox.
 
 Features:
 
@@ -58,7 +58,7 @@ No Questions
 9. Shortcode Put In Page Or Post Or Template File.
 10. Front End : Album Display.
 11. Front End : Selected Album Open.
-12. Front End : Selected Image Open In Fancybox.
+12. Front End : Selected Image Open In Colorbox.
 13. Micro Image Gallery
 
 
@@ -68,6 +68,7 @@ No Questions
 
 = 1.1 =
 * Added Micro Image gallery Features so user can easily view all the thumb photos of albums and navigate easily between them.
+
 
 == Upgrade Notice ==
 * Upgrade Notice Notification

@@ -3,7 +3,7 @@ Contributors: augustinfotech
 Tags: gallery,image,images,photo,photos,picture,pictures,thumbnails,photo-albums,responsive gallery,album,gallery shortcode,responsive album,responsive photos,responsive gallery,lightbox,fancybox,micro,micro gallery,micro image gallery
 Requires at least: 3.5
 Tested up to: 3.9
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -69,6 +69,8 @@ No Questions
 = 1.1 =
 * Added Micro Image gallery Features so user can easily view all the thumb photos of albums and navigate easily between them.
 
+= 1.2 =
+* Removed fancybox and added colorbox which is under MIT license.
 
 == Upgrade Notice ==
 * Upgrade Notice Notification

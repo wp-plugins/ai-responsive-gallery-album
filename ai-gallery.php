@@ -395,15 +395,17 @@ function ai_ajax_photoupdateOrder_callback()
 function ai_admin_enqueue_scripts()
 
 {
+  $screen = get_current_screen();
+  if($screen->id == 'toplevel_page_ai_gallery')
+  {
+	 wp_register_script( 'jquery.validate', AI_URL_PATH.'js/jquery.validate.js');
 
-	wp_register_script( 'jquery.validate', AI_URL_PATH.'js/jquery.validate.js');
+	 wp_enqueue_script( 'jquery.validate' ); 
+		
+	 wp_register_script( 'jquery.microgallery', AI_URL_PATH.'js/jquery.microgallery.js');
 
-    wp_enqueue_script( 'jquery.validate' ); 
+	 wp_enqueue_script( 'jquery.microgallery' ); 
 	
-	wp_register_script( 'jquery.microgallery', AI_URL_PATH.'js/jquery.microgallery.js');
-
-   wp_enqueue_script( 'jquery.microgallery' ); 
-
+   }	 
 }
-
 ?>

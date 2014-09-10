@@ -8,7 +8,7 @@ Plugin URI: http://www.augustinfotech.com
 
 Description: AI Responsive Gallery Album for WordPress
 
-Version: 1.2
+Version: 1.3
 
 Text Domain: aigallery
 

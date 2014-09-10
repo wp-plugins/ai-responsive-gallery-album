@@ -132,16 +132,14 @@ function ai_gallery_setting()
 
 {
 
-	add_menu_page('AI Gallery','AI Gallery','edit_plugins','ai_gallery','ai_listing_album',AI_URL_PATH.'images/augustinfotech.jpg',10);
+	add_menu_page('AI Gallery','AI Gallery','edit_plugins','ai_gallery','ai_listing_album',AI_URL_PATH.'images/augustinfotech.jpg',12);
 
 	add_submenu_page('ai_gallery', 'Add Album', 'Add New Album','edit_plugins', 'ai_album', 'ai_add_new_album');
 
 	add_submenu_page('', 'Photos', 'Photos','edit_plugins', 'ai_listing_photos', 'ai_listing_photos');
 
 	add_submenu_page('', 'Add Photos', 'Add New Photos','edit_plugins', 'ai_new_photos', 'ai_add_new_photos');
-
 	
-
 	add_action( 'admin_enqueue_scripts', 'ai_admin_enqueue_scripts' );
 
 	
@@ -393,19 +391,20 @@ function ai_ajax_photoupdateOrder_callback()
 }
 
 function ai_admin_enqueue_scripts()
-
 {
-  $screen = get_current_screen();
-  if($screen->id == 'toplevel_page_ai_gallery')
-  {
-	 wp_register_script( 'jquery.validate', AI_URL_PATH.'js/jquery.validate.js');
-
-	 wp_enqueue_script( 'jquery.validate' ); 
 		
-	 wp_register_script( 'jquery.microgallery', AI_URL_PATH.'js/jquery.microgallery.js');
+    $screen = get_current_screen();
+	if($screen->id == 'toplevel_page_ai_gallery')
+    {
+		wp_register_script( 'jquery.validate', AI_URL_PATH.'js/jquery.validate.js');
 
-	 wp_enqueue_script( 'jquery.microgallery' ); 
+        wp_enqueue_script( 'jquery.validate' ); 
 	
-   }	 
+	   wp_register_script( 'jquery.microgallery', AI_URL_PATH.'js/jquery.microgallery.js');
+
+       wp_enqueue_script( 'jquery.microgallery' );
+		
+	}
+
 }
 ?>

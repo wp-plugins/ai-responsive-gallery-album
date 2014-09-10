@@ -433,7 +433,7 @@ $ai_get_album_res=$wpdb->get_results("select * from $ai_show_table_album ORDER B
 			   </div>
 			 	
 			</td>
-			<td class='title column-title album_id' style="width:120px;">[Album ID=<?php echo $val->album_id; ?>]</td>
+			<td class='title column-title album_id' style="width:120px;"><input type="text" value="[Album ID=<?php echo $val->album_id; ?>]"size="15" readonly /></td>
 
 			<td class='title column-title total_img' style="width:120px;"><?php echo $ai_getcount_album_images[0]['albumcount']; ?></td>
 

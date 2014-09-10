@@ -2,7 +2,7 @@
 Contributors: augustinfotech
 Tags: gallery,image,images,photo,photos,picture,pictures,thumbnails,photo-albums,responsive gallery,album,gallery shortcode,responsive album,responsive photos,responsive gallery,lightbox,fancybox,micro,micro gallery,micro image gallery
 Requires at least: 3.5
-Tested up to: 3.9
+Tested up to: 4.0
 Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -71,6 +71,7 @@ No Questions
 
 = 1.2 =
 * Removed fancybox and added colorbox which is under MIT license.
+* Resolved shortcode copy issue.
 
 == Upgrade Notice ==
 * Upgrade Notice Notification

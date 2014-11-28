@@ -81,7 +81,7 @@ function ai_gallery_init() {
  * Setup Admin menu item
 */
 function ai_gallery_setting() {
-	add_menu_page('AI Gallery','AI Gallery','edit_plugins','ai_gallery','ai_listing_album',AI_URL_PATH.'images/augustinfotech.jpg',12);
+	add_menu_page('AI Gallery','AI Gallery','edit_plugins','ai_gallery','ai_listing_album','',28.5);
 	add_submenu_page('ai_gallery', 'Add Album', 'Add New Album','edit_plugins', 'ai_album', 'ai_add_new_album');
 	add_submenu_page('', 'Photos', 'Photos','edit_plugins', 'ai_listing_photos', 'ai_listing_photos');
 	add_submenu_page('', 'Add Photos', 'Add New Photos','edit_plugins', 'ai_new_photos', 'ai_add_new_photos');	
@@ -112,6 +112,18 @@ function ai_gallery_setting() {
 		}
 	}
 }
+
+/*
+* Admin menu icons
+*/
+add_action( 'admin_head', 'ai_rg_add_menu_icons_styles' );
+function ai_rg_add_menu_icons_styles() { ?>
+	<style type="text/css" media="screen">
+		#adminmenu .toplevel_page_ai_gallery div.wp-menu-image:before {
+			content: '\f161';
+		}
+	</style>
+<?php }
 
 function ai_add_gallery_table() {
 	global $wpdb;
